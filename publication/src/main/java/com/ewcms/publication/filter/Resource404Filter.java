@@ -58,8 +58,7 @@ public class Resource404Filter implements Filter, InitializingBean {
 	    Resource404ResponseWrapper responseWrapper = new Resource404ResponseWrapper(response);
 	        
 	    chain.doFilter(request, responseWrapper);
-	    String uri = request.getRequestURI();
-	    logger.warn("This is not path = {}",uri);
+	    
 	    if(responseWrapper.isFound()){
 	    	return ;
 	    }
@@ -68,8 +67,8 @@ public class Resource404Filter implements Filter, InitializingBean {
 	    		return ;
 	        }
 	    }
-//	    String uri = request.getRequestURI();
-//	    logger.warn("This is not path = {}",uri);
+	    String uri = request.getRequestURI();
+	    logger.warn("This is not path = {}",uri);
 	    responseWrapper.sendError(HttpServletResponse.SC_NOT_FOUND,uri);
 	}
 
