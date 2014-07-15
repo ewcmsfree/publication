@@ -30,7 +30,7 @@ public interface TemplateSourceDaoable {
      * @param limit 查询记录数
      * @return 模板资源列表
      */
-    List<TemplateSource> findPublish(Integer siteId, Boolean forceAgain, Long startId, Integer limit);
+    List<TemplateSource> findPublish(Long siteId, Boolean forceAgain, Long startId, Integer limit);
     
     /**
      * 查询需要发布的模板资源
@@ -41,7 +41,7 @@ public interface TemplateSourceDaoable {
      * @param forceAgain 再发布 
      * @return 模板资源列表
      */
-    Integer findPublishCount(Integer siteId, Boolean forceAgain);
+    Integer findPublishCount(Long siteId, Boolean forceAgain);
     
     /**
      * 得到模板资源,包括子资源
@@ -50,7 +50,7 @@ public interface TemplateSourceDaoable {
      * @param ids 模板资源编号集合
      * @return 模板资源
      */
-    List<TemplateSource> findPublish(Integer siteId,List<Long> ids);
+    List<TemplateSource> findPublish(Long siteId,List<Long> ids);
     
     /**
      * 通过uri查询模板资源
@@ -59,5 +59,5 @@ public interface TemplateSourceDaoable {
      * @param uri
      * @return
      */
-    TemplateSource findByUri(Integer siteId,String uri);
+    TemplateSource findByUri(Long siteId,String uri);
 }

@@ -31,7 +31,7 @@ public class PublishDao implements PublishDaoable{
 	}
 	
 	@Override
-	public void newPublishTask(String id, String parentId, Integer siteId, String remark, Integer count) {
+	public void newPublishTask(String id, String parentId, Long siteId, String remark, Integer count) {
 		
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("id", id).

@@ -119,10 +119,10 @@ public class SkipNumberDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("number.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.toString(), Integer.valueOf(10));
         params.put(GlobalVariable.PAGE_COUNT.toString(), Integer.valueOf(20));
@@ -140,10 +140,10 @@ public class SkipNumberDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("numberloop.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.toString(), Integer.valueOf(10));
         params.put(GlobalVariable.PAGE_COUNT.toString(), Integer.valueOf(20));
@@ -161,10 +161,10 @@ public class SkipNumberDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("numberdefault.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.toString(), Integer.valueOf(10));
         params.put(GlobalVariable.PAGE_COUNT.toString(), Integer.valueOf(20));

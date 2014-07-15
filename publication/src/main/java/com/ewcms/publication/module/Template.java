@@ -26,25 +26,25 @@ public class Template {
 		DETAIL,LIST,HOME,OTHER;
 	}
 	
-	private Integer id;
-	private Integer channelId;
+	private Long id;
+	private Long channelId;
 	private TemplateType type;
 	private String uniquePath;
 	private String uriPattern;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getChannelId() {
+	public Long getChannelId() {
 		return channelId;
 	}
 
-	public void setChannelId(Integer channelId) {
+	public void setChannelId(Long channelId) {
 		this.channelId = channelId;
 	}
 	 

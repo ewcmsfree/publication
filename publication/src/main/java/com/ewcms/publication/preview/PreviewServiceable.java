@@ -32,7 +32,7 @@ public interface PreviewServiceable {
      *          是否模拟 
      * @throws PublishException
      */
-    void viewTemplate(Writer writer,int siteId, int channelId, int templateId, boolean mock)throws PublishException;
+    void viewTemplate(Writer writer,Long siteId, Long channelId, Long templateId, boolean mock)throws PublishException;
        
     /**
      * 文章预览
@@ -47,7 +47,7 @@ public interface PreviewServiceable {
      *          页数 
      * @throws PublishException
      */
-    void viewArticle(Writer writer, int siteId, int channelId, long articleId, int pageNumber)throws PublishException;
+    void viewArticle(Writer writer, Long siteId, Long channelId, Long articleId, int pageNumber)throws PublishException;
     
     /**
      * 验证模板是否有效，并更新模板数据库信息
@@ -57,5 +57,5 @@ public interface PreviewServiceable {
      * @param templateId 模板编号
      * @return
      */
-    boolean verifyTemplate(int siteId, int channelId, int templateId);
+    boolean verifyTemplate(Long siteId, Long channelId, Long templateId);
 }

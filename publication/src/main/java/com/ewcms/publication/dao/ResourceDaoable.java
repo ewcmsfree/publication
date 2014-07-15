@@ -26,7 +26,7 @@ public interface ResourceDaoable {
      * @param ids  发布资源编号集合
      * @return
      */
-	List<Resource> findPublish(Integer siteId, List<Long> ids);
+	List<Resource> findPublish(Long siteId, List<Long> ids);
     
 	/**
      * 查询需要发布的资源数
@@ -37,7 +37,7 @@ public interface ResourceDaoable {
      * @param forceAgain 再发布 
      * @return 需要发布的资源
      */
-    Integer findPublishCount(Integer siteId, Boolean forceAgain);
+    Integer findPublishCount(Long siteId, Boolean forceAgain);
     
     /**
      * 查询需要发布的资源
@@ -50,7 +50,7 @@ public interface ResourceDaoable {
      * @param limit 查询记录数
      * @return 需要发布的资源
      */
-    List<Resource> findPublish(Integer siteId, Boolean forceAgain,Long startId,Integer limit);
+    List<Resource> findPublish(Long siteId, Boolean forceAgain,Long startId,Integer limit);
 
     /**
      * 通过uri查询资源
@@ -59,5 +59,5 @@ public interface ResourceDaoable {
      * @param uri 
      * @return
      */
-    Resource findByUri(Integer siteId, String uri);
+    Resource findByUri(Long siteId, String uri);
 }

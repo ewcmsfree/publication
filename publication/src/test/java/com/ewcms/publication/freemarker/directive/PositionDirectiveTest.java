@@ -37,14 +37,14 @@ public class PositionDirectiveTest extends FreemarkerTest {
 		Channel parent = new Channel();
 	    parent.setName("parent");
 	    parent.setAbsUrl("http://www.jict.org/parent");
-	    parent.setParentId(Integer.valueOf(2));
-		Mockito.when(service.findPublishOne(Integer.valueOf(1),Integer.valueOf(1))).thenReturn(parent);
+	    parent.setParentId(Long.valueOf(2));
+		Mockito.when(service.findPublishOne(Long.valueOf(1),Long.valueOf(1))).thenReturn(parent);
 		
 		Channel grand = new Channel();
 	    grand.setName("grand");
 	    grand.setAbsUrl("http://www.jict.org/grand");
 	    grand.setParentId(null);
-	    Mockito.when(service.findPublishOne(Integer.valueOf(1),Integer.valueOf(2))).thenReturn(grand);
+	    Mockito.when(service.findPublishOne(Long.valueOf(1),Long.valueOf(2))).thenReturn(grand);
 	    
         cfg.setSharedVariable("position", new PositionDirective(service));
         cfg.setSharedVariable("channel", new ChannelDirective());
@@ -114,7 +114,7 @@ public class PositionDirectiveTest extends FreemarkerTest {
 
         channel.setName("channel");
         channel.setAbsUrl("http://www.jict.org/channel");
-        channel.setParentId(Integer.valueOf(1));
+        channel.setParentId(Long.valueOf(1));
         
         return channel;
     }

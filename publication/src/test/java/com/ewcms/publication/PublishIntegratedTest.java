@@ -49,7 +49,7 @@ public class PublishIntegratedTest {
 //    	publishService.pubChannel(1, 809, false, true);
 //    	publishService.pubTemplateSource(1, true);
 //    	publishService.pubResource(1, true);
-    	publishService.pubSite(-2, true);
+    	publishService.pubSite(-2L, true);
     	long end = System.currentTimeMillis();
     	logger.info("Test publis end time {},Running time is {}",format.format(end),end - start);
     }

@@ -78,10 +78,10 @@ public class SkipDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("skip.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.getVariable(), Integer.valueOf(0));
         params.put(GlobalVariable.PAGE_COUNT.getVariable(), Integer.valueOf(1));
@@ -97,10 +97,10 @@ public class SkipDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("skip.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.getVariable(), Integer.valueOf(0));
         params.put(GlobalVariable.PAGE_COUNT.getVariable(), Integer.valueOf(5));
@@ -117,10 +117,10 @@ public class SkipDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("skiploop.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.PAGE_NUMBER.getVariable(), Integer.valueOf(0));
         params.put(GlobalVariable.PAGE_COUNT.getVariable(), Integer.valueOf(5));

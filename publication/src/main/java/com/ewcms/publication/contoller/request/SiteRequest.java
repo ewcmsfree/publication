@@ -1,13 +1,13 @@
 package com.ewcms.publication.contoller.request;
 
 public class SiteRequest {
-	private int siteId;
+	private Long siteId;
 	private boolean again;
 	
-	public int getSiteId() {
+	public Long getSiteId() {
 		return siteId;
 	}
-	public void setSiteId(int siteId) {
+	public void setSiteId(Long siteId) {
 		this.siteId = siteId;
 	}
 	public boolean isAgain() {

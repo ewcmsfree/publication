@@ -37,12 +37,12 @@ public class ArticlePreviewDao implements ArticleDaoable {
 	}
 
 	@Override
-	public int findPrePublishCount(Integer channelId, Boolean forceAgain) {
+	public int findPrePublishCount(Long channelId, Boolean forceAgain) {
 		return mock ? DEFAULT_COUNT : articleDao.findPrePublishCount(channelId, forceAgain);
 	}
 
 	@Override
-	public List<Article> findPrePublish(Integer channelId, Boolean forceAgain, Long startId, Integer limit) {
+	public List<Article> findPrePublish(Long channelId, Boolean forceAgain, Long startId, Integer limit) {
 		if(!mock){
 			return articleDao.findPrePublish(channelId, forceAgain, startId, limit);
 		}
@@ -55,7 +55,7 @@ public class ArticlePreviewDao implements ArticleDaoable {
 	}
 
 	@Override
-	public List<ArticleInfo> findPublish(Integer channelId, Integer page, Integer row, Boolean top) {
+	public List<ArticleInfo> findPublish(Long channelId, Integer page, Integer row, Boolean top) {
 		if(!mock){
 			return articleDao.findPublish(channelId, page, row, top);
 		}
@@ -80,7 +80,7 @@ public class ArticlePreviewDao implements ArticleDaoable {
 	}
 
 	@Override
-	public int findPublishCount(Integer channelId) {
+	public int findPublishCount(Long channelId) {
 		return mock ? DEFAULT_COUNT : articleDao.findPublishCount(channelId);
 	}
 

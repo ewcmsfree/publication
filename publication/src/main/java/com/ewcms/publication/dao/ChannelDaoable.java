@@ -25,7 +25,7 @@ public interface ChannelDaoable extends CacheDaoable{
      * @param siteId 站点编号
      * @return
      */
-    Channel findRoot(Integer siteId);
+    Channel findRoot(Long siteId);
     
     /**
      * 通过频道编号得到发布频道对象
@@ -36,7 +36,7 @@ public interface ChannelDaoable extends CacheDaoable{
      * @param id 频道编号
      * @return 频道对象
      */
-    Channel findPublishOne(Integer siteId,Integer id);
+    Channel findPublishOne(Long siteId,Long id);
     
     /**
      * 得到所属的发布的子频道
@@ -45,7 +45,7 @@ public interface ChannelDaoable extends CacheDaoable{
      * @param id 频道编号
      * @return
      */
-    List<Channel> findPublishChildren(Integer siteId,Integer id);
+    List<Channel> findPublishChildren(Long siteId,Long id);
     
     /**
      * 得到所属频道发布的父频道 
@@ -54,7 +54,7 @@ public interface ChannelDaoable extends CacheDaoable{
      * @param id 频道编号
      * @return
      */
-    Channel findPublishParent(Integer siteId,Integer id);
+    Channel findPublishParent(Long siteId,Long id);
     
     /**
      * 通过频道访问链接地址和路径得到频道
@@ -63,6 +63,6 @@ public interface ChannelDaoable extends CacheDaoable{
      * @param uri 频道链接地址或路径
      * @return 频道对象
      */
-    Channel findPublishByUri(Integer siteId, String uri);
+    Channel findPublishByUri(Long siteId, String uri);
     
 }

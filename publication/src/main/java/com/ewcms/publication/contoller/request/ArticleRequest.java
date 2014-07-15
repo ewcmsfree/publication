@@ -3,14 +3,14 @@ package com.ewcms.publication.contoller.request;
 import java.util.List;
 
 public class ArticleRequest extends SiteRequest{
-	private int channelId;
+	private Long channelId;
 	private List<Long> ids;
 
-	public int getChannelId() {
+	public Long getChannelId() {
 		return channelId;
 	}
 
-	public void setChannelId(int channelId) {
+	public void setChannelId(Long channelId) {
 		this.channelId = channelId;
 	}
 

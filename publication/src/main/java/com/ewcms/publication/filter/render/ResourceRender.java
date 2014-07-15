@@ -43,7 +43,7 @@ public class ResourceRender extends AbstractResourceRender{
      * @throws IOException
      */
     @Override
-    protected boolean output(HttpServletResponse response, Integer siteId, String uri)throws IOException{
+    protected boolean output(HttpServletResponse response, Long siteId, String uri)throws IOException{
         Resource resource = resourceDao.findByUri(siteId, uri);
         if(resource == null){
             logger.debug("Resource is not exist,uri is {}",uri);

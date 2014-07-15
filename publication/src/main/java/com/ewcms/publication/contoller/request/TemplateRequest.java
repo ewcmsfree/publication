@@ -1,22 +1,22 @@
 package com.ewcms.publication.contoller.request;
 
 public class TemplateRequest extends SiteRequest {
-	private int channelId;
-	private int templateId;
+	private Long channelId;
+	private Long templateId;
 
-	public int getChannelId() {
+	public Long getChannelId() {
 		return channelId;
 	}
 
-	public void setChannelId(int channelId) {
+	public void setChannelId(Long channelId) {
 		this.channelId = channelId;
 	}
 
-	public int getTemplateId() {
+	public Long getTemplateId() {
 		return templateId;
 	}
 
-	public void setTemplateId(int templateId) {
+	public void setTemplateId(Long templateId) {
 		this.templateId = templateId;
 	}
 

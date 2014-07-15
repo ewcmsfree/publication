@@ -26,7 +26,7 @@ public interface PublishServiceable {
      * @param ids 模版资源编号集合
      * @throws PublishException
      */
-    void pubTemplateSource(int siteId,List<Long> ids)throws PublishException;
+    void pubTemplateSource(Long siteId,List<Long> ids)throws PublishException;
     
     /**
      * 发布站点中的模版资源
@@ -35,7 +35,7 @@ public interface PublishServiceable {
      * @param again 重新发布
      * @throws PublishException
      */
-    void pubTemplateSource(int siteId,boolean again)throws PublishException;
+    void pubTemplateSource(Long siteId,boolean again)throws PublishException;
     
     /**
      * 发布指定的资源
@@ -46,7 +46,7 @@ public interface PublishServiceable {
      * @param ids 资源编号集合
      * @throws PublishException
      */
-    void pubResource(int siteId,List<Long> ids)throws PublishException;
+    void pubResource(Long siteId,List<Long> ids)throws PublishException;
     
     /**
      * 发布站点中的资源
@@ -57,7 +57,7 @@ public interface PublishServiceable {
      * @param again 重新发布
      * @throws PublishException
      */
-    void pubResource(int siteId,boolean again)throws PublishException;
+    void pubResource(Long siteId,boolean again)throws PublishException;
     
     /**
      * 发布模版对应生成的页面
@@ -66,7 +66,7 @@ public interface PublishServiceable {
      * @param again 重新发布
      * @throws PublishException
      */
-    void pubTemplate(int siteid,int channelId,int templateId,boolean again)throws PublishException;
+    void pubTemplate(Long siteid,Long channelId,Long templateId,boolean again)throws PublishException;
     
     /**
      * 发布频道下生成的页面
@@ -79,8 +79,7 @@ public interface PublishServiceable {
      * @param again 重新发布
      * @throws PublishException
      */
-    void pubChannel(int siteId, int channelId, 
-    		boolean child, boolean again) throws PublishException;
+    void pubChannel(Long siteId, Long channelId, boolean child, boolean again) throws PublishException;
     
     /**
      * 发布站点
@@ -89,7 +88,7 @@ public interface PublishServiceable {
      * @param again 重新发布
      * @throws PublishException
      */
-    void pubSite(int siteId,boolean again)throws PublishException;
+    void pubSite(Long siteId,boolean again)throws PublishException;
     
     /**
      * 发布指定的文章
@@ -100,7 +99,7 @@ public interface PublishServiceable {
      * @param ids 文章编号集合
      * @throws PublishException
      */
-    void pubArticle(int siteId, int channelId,List<Long> ids)throws PublishException;
+    void pubArticle(Long siteId, Long channelId,List<Long> ids)throws PublishException;
     
     /**
      * 得到站点的发布任务
@@ -108,7 +107,7 @@ public interface PublishServiceable {
      * @param siteId 站点编号
      * @return
      */
-    List<Taskable> getSiteTask(Integer siteId);
+    List<Taskable> getSiteTask(Long siteId);
     
     /**
      * 关闭发布任务
@@ -117,5 +116,5 @@ public interface PublishServiceable {
      * @param id 任务编号
      * @throws PublishException
      */
-    void closeTask(Integer siteId,String id)throws PublishException;
+    void closeTask(Long siteId,String id)throws PublishException;
 }

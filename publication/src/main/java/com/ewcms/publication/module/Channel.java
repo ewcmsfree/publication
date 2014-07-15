@@ -27,7 +27,7 @@ package com.ewcms.publication.module;
  * @version 2014-06-12
  */
 public class Channel {
-	private Integer id;
+	private Long id;
 	private String name;
 	private String dir;
 	private String url;
@@ -37,15 +37,15 @@ public class Channel {
 	private Integer listSize = 20;
 	private Integer maxSize = 9999;
 	private String describe;
-	private Integer parentId;
+	private Long parentId;
 	private String appChannel;
-	private Integer siteId;
+	private Long siteId;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -121,11 +121,11 @@ public class Channel {
 		this.iconUrl = iconUrl;
 	}
  
-	public Integer getParentId() {
+	public Long getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(Integer parentId) {
+	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
 
@@ -137,11 +137,11 @@ public class Channel {
 		this.appChannel = appChannel;
 	}
 
-	public Integer getSiteId() {
+	public Long getSiteId() {
 		return siteId;
 	}
 
-	public void setSiteId(Integer siteId) {
+	public void setSiteId(Long siteId) {
 		this.siteId = siteId;
 	}
 

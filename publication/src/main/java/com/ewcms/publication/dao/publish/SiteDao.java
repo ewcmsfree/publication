@@ -34,7 +34,7 @@ public class SiteDao implements SiteDaoable{
     		+ " FROM site_site t1,site_siteserver t2 "
     		+ " WHERE t1.serverid = t2.id AND t1.id = :id AND t1.publicenable = TRUE";
 	
-	private volatile Cacheable<Integer, Site> cache = new LRUCache<Integer, Site>(CACHE_MAX_SIZE);
+	private volatile Cacheable<Long, Site> cache = new LRUCache<Long, Site>(CACHE_MAX_SIZE);
 	
     private NamedParameterJdbcTemplate jdbcTemplate;
 	
@@ -45,11 +45,11 @@ public class SiteDao implements SiteDaoable{
 	
 	@Override
 	public void resetCache() {
-		cache = new LRUCache<Integer, Site>(CACHE_MAX_SIZE);
+		cache = new LRUCache<Long, Site>(CACHE_MAX_SIZE);
 	}
 
 	@Override
-	public Site findOne(Integer id) {
+	public Site findOne(Long id) {
 		if(cache.exist(id)){
 			return cache.get(id);
 		}
@@ -72,7 +72,7 @@ public class SiteDao implements SiteDaoable{
 		public Site mapRow(ResultSet rs, int rowNum) throws SQLException {
 			 Site site = new Site();
 			 
-			 site.setId(rs.getInt("id"));
+			 site.setId(rs.getLong("id"));
 			 site.setExtraFile(rs.getString("extrafile"));
 			 site.setMetaDescripe(rs.getString("metadescripe"));
 			 site.setMetaKey(rs.getString("metakey"));

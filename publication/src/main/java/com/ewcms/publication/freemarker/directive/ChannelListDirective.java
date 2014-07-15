@@ -64,7 +64,7 @@ public class ChannelListDirective extends ForeachDirective {
     	 boolean child = getChildValue(params);
          boolean parent = getParentValue(params);
          int row = getRowValue(params);
-         int siteId = this.getCurrentSite(env).getId();
+         Long siteId = this.getCurrentSite(env).getId();
          
          List<Channel> channels = getChannelList(env, params, siteId, parent, child);
          if(row != DEFAULT_ROW && row < channels.size()){
@@ -93,7 +93,6 @@ public class ChannelListDirective extends ForeachDirective {
 	@Override
 	@SuppressWarnings("rawtypes")
 	protected void executeNoneBody(Environment env, Map params,TemplateModel[] loopVars, TemplateDirectiveBody body)throws TemplateException, IOException {
-		
 		//TODO 添加默认显示
 		logger.warn("Body is null");
 	}
@@ -115,7 +114,7 @@ public class ChannelListDirective extends ForeachDirective {
      * @throws TemplateModelException
      */
     @SuppressWarnings("rawtypes")
-    private List<Channel> getChannelList(Environment env, Map params, int siteId, boolean parent, boolean child)throws TemplateException{
+    private List<Channel> getChannelList(Environment env, Map params, Long siteId, boolean parent, boolean child)throws TemplateException{
         final String name = channelParam;
         boolean debug = FreemarkerUtil.isDebug(env);
         
@@ -124,7 +123,7 @@ public class ChannelListDirective extends ForeachDirective {
             return loadingChannel(siteId, channel.getId(), parent, child, debug);
         }
 
-        Integer channelId = FreemarkerUtil.getInteger(params, name);
+        Long channelId = FreemarkerUtil.getLong(params, name);
         if (EmptyUtil.isNotNull(channelId)) {
             return loadingChannel(siteId, channelId, parent, child, debug);
         }
@@ -157,7 +156,7 @@ public class ChannelListDirective extends ForeachDirective {
      * @return
      * @throws TemplateException
      */
-    List<Channel> loadingChannel(int siteId, int channelId, boolean parent, boolean child, boolean debug)throws TemplateException{
+    List<Channel> loadingChannel(Long siteId, Long channelId, boolean parent, boolean child, boolean debug)throws TemplateException{
         
         Channel channel = channelService.findPublishOne(siteId,channelId);
         if (EmptyUtil.isNull(channel)) {
@@ -206,7 +205,7 @@ public class ChannelListDirective extends ForeachDirective {
      * @return
      * @throws TemplateException
      */
-    private List<Channel> loadingChannelInVariable(Environment env, int siteId,String value, boolean parent, boolean child,boolean debug)throws TemplateException{
+    private List<Channel> loadingChannelInVariable(Environment env, Long siteId,String value, boolean parent, boolean child,boolean debug)throws TemplateException{
         Channel channel = (Channel)FreemarkerUtil.getBean(env, value);
         if(EmptyUtil.isNotNull(channel)){
             logger.debug("Channel is {}",channel.toString());
@@ -234,12 +233,12 @@ public class ChannelListDirective extends ForeachDirective {
      * @return
      * @throws TemplateException
      */
-    private List<Channel> loadingChannelByList(Environment env,int siteId,List<?> values,boolean parent, boolean child,boolean debug)throws TemplateException{
+    private List<Channel> loadingChannelByList(Environment env,Long siteId,List<?> values,boolean parent, boolean child,boolean debug)throws TemplateException{
         List<Channel> channels = new ArrayList<Channel>();
         for (Object value : values) {
             if (value instanceof Number) {
                 logger.debug("Channel's id is {} ",value);
-                channels.addAll(loadingChannel(siteId,((Number) value).intValue(), parent, child,debug));
+                channels.addAll(loadingChannel(siteId,((Number) value).longValue(), parent, child,debug));
             }else if (value instanceof String) {
                 logger.debug("Channel's url or variable is {}",value);
                 channels.addAll(loadingChannelInVariable(env,siteId,(String)value, parent, child,debug));

@@ -38,7 +38,7 @@ public class TemplateSourceDao implements TemplateSourceDaoable{
 	}
 	
 	@Override
-	public List<TemplateSource> findPublish(Integer siteId, List<Long> ids) {
+	public List<TemplateSource> findPublish(Long siteId, List<Long> ids) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
 				addValue("ids", ids);
@@ -47,7 +47,7 @@ public class TemplateSourceDao implements TemplateSourceDaoable{
 	}
 
 	@Override
-	public List<TemplateSource> findPublish(Integer siteId, Boolean forceAgain, Long startId, Integer limit) {
+	public List<TemplateSource> findPublish(Long siteId, Boolean forceAgain, Long startId, Integer limit) {
 		Boolean[] release = forceAgain ? new Boolean[]{Boolean.FALSE,Boolean.TRUE} : new Boolean[]{Boolean.FALSE};
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
@@ -59,7 +59,7 @@ public class TemplateSourceDao implements TemplateSourceDaoable{
 	}
 	
 	@Override
-	public Integer findPublishCount(Integer siteId, Boolean forceAgain) {
+	public Integer findPublishCount(Long siteId, Boolean forceAgain) {
 		Boolean[] release = forceAgain ? new Boolean[]{Boolean.FALSE,Boolean.TRUE} : new Boolean[]{Boolean.FALSE};
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
@@ -69,7 +69,7 @@ public class TemplateSourceDao implements TemplateSourceDaoable{
 	}
 	
 	@Override
-	public TemplateSource findByUri(Integer siteId, String uri) {
+	public TemplateSource findByUri(Long siteId, String uri) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("uri", String.format("%d%s", siteId,uri));
 		try{

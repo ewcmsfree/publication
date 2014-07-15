@@ -34,7 +34,7 @@ public class ResourceDao implements ResourceDaoable {
 	}
 	
 	@Override
-	public List<Resource> findPublish(Integer siteId, List<Long> ids) {
+	public List<Resource> findPublish(Long siteId, List<Long> ids) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
 				addValue("ids", ids);
@@ -43,7 +43,7 @@ public class ResourceDao implements ResourceDaoable {
 	}
 	
 	@Override
-	public Integer findPublishCount(Integer siteId, Boolean forceAgain) {
+	public Integer findPublishCount(Long siteId, Boolean forceAgain) {
 		
 		String[] status = forceAgain ? new String[]{"NORMAL","RELEASED"} : new String[]{"NORMAL"};
 		SqlParameterSource params = new MapSqlParameterSource().
@@ -54,7 +54,7 @@ public class ResourceDao implements ResourceDaoable {
 	}
  
 	@Override
-	public List<Resource> findPublish(Integer siteId, Boolean forceAgain, Long startId, Integer limit) {
+	public List<Resource> findPublish(Long siteId, Boolean forceAgain, Long startId, Integer limit) {
 		String[] status = forceAgain ? new String[]{"NORMAL","RELEASED"} : new String[]{"NORMAL"};
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
@@ -66,7 +66,7 @@ public class ResourceDao implements ResourceDaoable {
 	}
 
 	@Override
-	public Resource findByUri(Integer siteId, String uri) {
+	public Resource findByUri(Long siteId, String uri) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
 				addValue("uri", uri);

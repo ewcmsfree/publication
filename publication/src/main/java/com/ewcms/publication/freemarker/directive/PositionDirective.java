@@ -157,7 +157,7 @@ public class PositionDirective extends BaseDirective {
     	
         List<Channel> levels = new ArrayList<Channel>();
         levels.add(channel);
-        Integer parentId = channel.getParentId();
+        Long parentId = channel.getParentId();
         for(int i = 0 ; i < 100 ; i++){
         	if(parentId != null){
         		Channel p = channelDao.findPublishOne(site.getId(), parentId);

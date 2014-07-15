@@ -1,14 +1,14 @@
 package com.ewcms.publication.contoller.request;
 
 public class ChannelRequest extends SiteRequest {
-	private Integer channelId;
+	private Long channelId;
 	private boolean child;
 
-	public Integer getChannelId() {
+	public Long getChannelId() {
 		return channelId;
 	}
 	
-	public void setChannelId(Integer channelId) {
+	public void setChannelId(Long channelId) {
 		this.channelId = channelId;
 	}
 	

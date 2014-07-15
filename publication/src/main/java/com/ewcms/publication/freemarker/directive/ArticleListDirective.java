@@ -132,7 +132,7 @@ public class ArticleListDirective extends ForeachDirective {
         final String name = channelParam;
         
         Channel channel =null;
-        Integer id = FreemarkerUtil.getInteger(params, name);
+        Long id = FreemarkerUtil.getLong(params, name);
         Site site = getCurrentSite(env);
         if (EmptyUtil.isNotNull(id)) {
             logger.debug("Channel's id is {}",id);

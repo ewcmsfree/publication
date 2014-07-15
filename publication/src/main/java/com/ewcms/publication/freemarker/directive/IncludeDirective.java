@@ -92,7 +92,7 @@ public class IncludeDirective extends BaseDirective {
 			TemplateDirectiveBody body,String uniquePath,String charset)
 			throws TemplateException, IOException {
 		
-		Integer channelId = this.getCurrentChannel(env).getId();
+		Long channelId = this.getCurrentChannel(env).getId();
 		String taskId = this.getTaskId(env);
 		Cacheable<String,String> includeCache = getInclundeCache(env);
 		String key = getKey(channelId, uniquePath, taskId);
@@ -116,7 +116,7 @@ public class IncludeDirective extends BaseDirective {
 		env.getOut().flush();
 	}
 	
-	private String getKey(Integer channelId,String path,String taskId){
+	private String getKey(Long channelId,String path,String taskId){
 		String s = String.format("%d-%s-%s", channelId, path, taskId);
 		return DigestUtils.md5Hex(s.getBytes());
 	}
@@ -128,7 +128,7 @@ public class IncludeDirective extends BaseDirective {
      * @return
      * @throws TemplateException
      */
-    private Integer getSiteIdValue(Environment env)throws TemplateException {
+    private Long getSiteIdValue(Environment env)throws TemplateException {
         Site site = (Site) FreemarkerUtil.getBean(env, GlobalVariable.SITE.toString());
         if(EmptyUtil.isNull(site)){
             logger.error("Site is null in freemarker variable");
@@ -151,14 +151,14 @@ public class IncludeDirective extends BaseDirective {
     private String getTemplateUniquePath(Environment env, Map params)throws TemplateException{
     	
     	String path = getPathValue(params);
-        Integer siteId = getSiteIdValue(env);
+    	Long siteId = getSiteIdValue(env);
         String uniquePath = null;
         if(EmptyUtil.isNotNull(path)){
             uniquePath = getUniqueTemplatePath(siteId,path);
         }else{
             String name = getNameValue(params);
             if(EmptyUtil.isNotNull(name)){
-                Integer channelId = getChannelIdValue(env,params,siteId);
+            	Long channelId = getChannelIdValue(env,params,siteId);
                 uniquePath = getChannelTemplatePath(siteId,channelId,name);
             }
         }
@@ -195,14 +195,14 @@ public class IncludeDirective extends BaseDirective {
      * @throws TemplateException
      */
     @SuppressWarnings("rawtypes")
-    private Integer getChannelIdValue(Environment env,Map params,Integer siteId)throws TemplateException{
+    private Long getChannelIdValue(Environment env,Map params,Long siteId)throws TemplateException{
         Channel channel = (Channel)FreemarkerUtil.getBean(params, channelParam);
         if (EmptyUtil.isNotNull(channel)) {
             logger.debug("Get channel is {}",channel);
             return channel.getId();
         }
 
-        Integer id = FreemarkerUtil.getInteger(params, channelParam);
+        Long id = FreemarkerUtil.getLong(params, channelParam);
         if(EmptyUtil.isNotNull(id)){
             logger.debug("Get channel id is {}",id);
             return id;
@@ -275,7 +275,7 @@ public class IncludeDirective extends BaseDirective {
      * @param path 模板路径
      * @return
      */
-    String getUniqueTemplatePath(Integer siteId, String path) {
+    String getUniqueTemplatePath(Long siteId, String path) {
         String nPath = StringUtils.removeStart(path, "/");
         String uPath = StringUtils.join(new Object[]{siteId,nPath}, "/");
         logger.debug("Include path is {}",uPath);
@@ -290,7 +290,7 @@ public class IncludeDirective extends BaseDirective {
      * @param name 模板名称
      * @return
      */
-    String getChannelTemplatePath(Integer siteId,Integer channelId,String name){
+    String getChannelTemplatePath(Long siteId,Long channelId,String name){
         return templateService.findUniquePath(siteId, channelId, name);
     }
     

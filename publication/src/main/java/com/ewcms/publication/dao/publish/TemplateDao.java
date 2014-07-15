@@ -49,7 +49,7 @@ public class TemplateDao implements TemplateDaoable {
 	}
 
 	@Override
-	public Template findOne(Integer channelId, Integer id) {
+	public Template findOne(Long channelId, Long id) {
 		String key = templateKey(channelId,id);
 		if(cache.exist(key)){
 			return (Template)cache.get(key);
@@ -70,13 +70,13 @@ public class TemplateDao implements TemplateDaoable {
 		return t;
 	}
 	
-	private String templateKey(Integer channelId,Integer id){
+	private String templateKey(Long channelId,Long id){
 		return String.format("template-%d-%d", channelId, id);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Template> findInChannel(Integer channelId) {
+	public List<Template> findInChannel(Long channelId) {
 		String key = channelKey(channelId);
 		if(cache.exist(key)){
 			return (List<Template>)cache.get(key);
@@ -90,7 +90,7 @@ public class TemplateDao implements TemplateDaoable {
 		return list;
 	}
 	
-	private String channelKey(Integer channelId){
+	private String channelKey(Long channelId){
 		return String.format("channel-%d", channelId);
 	}
 
@@ -108,7 +108,7 @@ public class TemplateDao implements TemplateDaoable {
 	}
 
 	@Override
-	public String findUniquePath(Integer siteId, Integer channelId, String name) {
+	public String findUniquePath(Long siteId, Long channelId, String name) {
 		String path = null;
 		try{
 			SqlParameterSource params = new MapSqlParameterSource().
@@ -125,7 +125,7 @@ public class TemplateDao implements TemplateDaoable {
 	}
 	
 	@Override
-	public void saveVerifyTemplate(Integer templateId, boolean verify) {
+	public void saveVerifyTemplate(Long templateId, boolean verify) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("id", templateId).
 				addValue("verify", verify);
@@ -138,8 +138,8 @@ public class TemplateDao implements TemplateDaoable {
 		public Template mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Template t = new Template();
 			
-			t.setId(rs.getInt("id"));
-			t.setChannelId(rs.getInt("channel_id"));
+			t.setId(rs.getLong("id"));
+			t.setChannelId(rs.getLong("channel_id"));
 			t.setType(TemplateType.valueOf(rs.getString("type")));
 			t.setUniquePath(rs.getString("uniquepath"));
 			t.setUriPattern(rs.getString("uripattern"));

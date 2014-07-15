@@ -11,8 +11,7 @@ public interface PublishDaoable {
 	 * @param remark 备注
 	 * @param count 任务数
 	 */
-	void newPublishTask(String id, String parentId, 
-			Integer siteId, String remark,Integer count);
+	void newPublishTask(String id, String parentId, Long siteId, String remark,Integer count);
 	
 	/**
 	 * 发布任务开始

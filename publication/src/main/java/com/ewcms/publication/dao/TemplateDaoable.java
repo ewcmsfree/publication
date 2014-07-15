@@ -26,7 +26,7 @@ public interface TemplateDaoable extends CacheDaoable {
      * @param id b模板编号
      * @return 
      */
-    Template findOne(Integer channelId, Integer id);
+    Template findOne(Long channelId, Long id);
     
     /**
      * 得到频道下所有模板
@@ -36,7 +36,7 @@ public interface TemplateDaoable extends CacheDaoable {
      * @param channelId 频道频道编号
      * @return 模板对象
      */
-    List<Template> findInChannel(Integer channelId);
+    List<Template> findInChannel(Long channelId);
     
     /**
      * 通过UniquePath得到模板，模板不存在返回null值
@@ -55,7 +55,7 @@ public interface TemplateDaoable extends CacheDaoable {
      * 
      * @return
      */
-    String findUniquePath(Integer siteId,Integer channelId,String name);
+    String findUniquePath(Long siteId,Long channelId,String name);
     
     /**
      * 保存模板验证信息
@@ -63,5 +63,5 @@ public interface TemplateDaoable extends CacheDaoable {
      * @param templateId 模板编号
      * @param verify true:验证通过，false:验证未通过
      */
-    void saveVerifyTemplate(Integer templateId, boolean verify);
+    void saveVerifyTemplate(Long templateId, boolean verify);
 }

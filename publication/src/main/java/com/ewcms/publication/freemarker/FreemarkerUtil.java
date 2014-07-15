@@ -246,6 +246,74 @@ public class FreemarkerUtil {
     }
 
     /**
+     * 得到参数的整数值
+     * 
+     * @param params
+     *            参数集合
+     * @param name
+     *            参数名
+     * @return 如果不存在则返回null
+     * @throws TemplateException
+     */
+    @SuppressWarnings("rawtypes")
+    public static Long getLong(Map params, String name) throws TemplateException {
+        if(EmptyUtil.isMapEmpty(params)){
+            return null;
+        }else{
+            TemplateModel value =(TemplateModel)params.get(name);
+            return getLong(value,true);    
+        }
+    }
+
+    /**
+     * 得到Freemarker变量中的整数值
+     * 
+     * @param env
+     *          Freemarker环境变量
+     * @param name
+     *          变量名
+     * @return 如果不存在则返回null
+     * @throws TemplateException
+     */
+    public static Long getLong(Environment env,String name) throws TemplateException {
+        TemplateModel value = env.getVariable(name);
+        return getLong(value,false);
+    }
+
+    /**
+     * 处理Freemarker数据模型，得到整数值。
+     * 
+     * @param model 
+     *           freemarker数据模型
+     * @param parse
+     *           如果是字符串是否解析
+     * @return
+     * @throws TemplateException
+     */
+    static Long getLong(TemplateModel model,boolean parse) throws TemplateException {
+        
+        if (EmptyUtil.isNull(model)) {
+            logger.debug("Model variable is null");
+            return null;
+        }
+        
+        Object value = wrapper.unwrap(model);
+        logger.debug("Value type is {}",value.getClass().getName());
+        if (value instanceof Number) {
+            return ((Number)value).longValue();
+        }else if(value instanceof String && parse){
+            try{
+                return Long.valueOf((String)value);    
+            }catch(NumberFormatException e){
+//                logger.warn("Value is {},not is Integer",value);
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+    
+    /**
      * 得到参数的字符值
      * 
      * @param params

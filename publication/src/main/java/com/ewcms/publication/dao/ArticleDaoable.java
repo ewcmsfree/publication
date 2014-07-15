@@ -35,7 +35,7 @@ public interface ArticleDaoable {
      * @param forceAgain 重新发布
      * @return 
      */
-    int findPrePublishCount(Integer channelId, Boolean forceAgain);
+    int findPrePublishCount(Long channelId, Boolean forceAgain);
     
     /**
      * 查询准备发布的文章
@@ -48,7 +48,7 @@ public interface ArticleDaoable {
      * @param limit 最大文章数
      * @return
      */
-    List<Article> findPrePublish(Integer channelId,Boolean forceAgain,Long startId, Integer limit);
+    List<Article> findPrePublish(Long channelId,Boolean forceAgain,Long startId, Integer limit);
     
     /**
      * 得到频道指定页面文章
@@ -62,7 +62,7 @@ public interface ArticleDaoable {
      * @param top  顶置文章
      * @return
      */
-    List<ArticleInfo> findPublish(Integer channelId,Integer page,Integer row,Boolean top);
+    List<ArticleInfo> findPublish(Long channelId,Integer page,Integer row,Boolean top);
     
     /**
      * 得到指定已经发布文章集合
@@ -80,5 +80,5 @@ public interface ArticleDaoable {
      * @param channelId 频道编号
      * @return 
      */
-    int findPublishCount(Integer channelId);
+    int findPublishCount(Long channelId);
 }

@@ -44,10 +44,10 @@ public class IncludeDirectiveTest extends FreemarkerTest {
 	 protected void currentConfiguration(Configuration cfg) {
 		 channelService = mock(ChannelDaoable.class);
 	     Channel channel = new Channel();
-	     channel.setId(1);
-	     when(channelService.findPublishByUri(any(Integer.class), any(String.class))).thenReturn(channel);
+	     channel.setId(1L);
+	     when(channelService.findPublishByUri(any(Long.class), any(String.class))).thenReturn(channel);
 	     templateService = mock(TemplateDaoable.class);
-	     when(templateService.findUniquePath(any(Integer.class), any(Integer.class), any(String.class))).thenReturn("2/1/include.html");
+	     when(templateService.findUniquePath(any(Long.class), any(Long.class), any(String.class))).thenReturn("2/1/include.html");
 	     IncludeDirective directive = new IncludeDirective(channelService,templateService);
 	     cfg.setSharedVariable("include", directive);
 	 }
@@ -56,7 +56,7 @@ public class IncludeDirectiveTest extends FreemarkerTest {
     public void testGetUniqueTemplatePath(){
        IncludeDirective directive = new IncludeDirective(channelService,templateService);
        String path = "/home/test.html";
-       Integer siteId=new Integer(2);
+       Long siteId=new Long(2);
        
        String uPath = directive.getUniqueTemplatePath(siteId, path);
        Assert.assertEquals("2/home/test.html", uPath);
@@ -83,7 +83,7 @@ public class IncludeDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("path.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.toString(), site);
         String value = process(template,params);
         value = StringUtils.deleteWhitespace(value);
@@ -96,10 +96,10 @@ public class IncludeDirectiveTest extends FreemarkerTest {
         
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.toString(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.TASK_ID.getVariable(), "1111-2222-3333-4444");
         String value = process(template,params);
@@ -113,10 +113,10 @@ public class IncludeDirectiveTest extends FreemarkerTest {
     	Template template = cfg.getTemplate(getTemplatePath("cache.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(2);
+        site.setId(2L);
         params.put(GlobalVariable.SITE.toString(), site);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         params.put(GlobalVariable.TASK_ID.getVariable(), "1111-2222-3333-4444");
         includeCache = Mockito.mock(Cacheable.class);

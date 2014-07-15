@@ -65,14 +65,14 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
     @Test
     public void testChannelIsNull()throws Exception{
         ChannelDaoable dao = mock(ChannelDaoable.class);
-        when(dao.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(null);
+        when(dao.findPublishOne(any(Long.class), any(Long.class))).thenReturn(null);
         ArticleListDirective directive = new ArticleListDirective(dao,null);
         cfg.setSharedVariable("alist", directive);
         
         Template template = cfg.getTemplate(getTemplatePath("value.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.toString(), site);
         String value = process(template, params);
         Assert.assertEquals("throws Exception", value);
@@ -99,7 +99,7 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
     @Test
     public void testChannelIdNotExist()throws Exception{
         ChannelDaoable dao = mock(ChannelDaoable.class);
-        when(dao.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(null);
+        when(dao.findPublishOne(any(Long.class), any(Long.class))).thenReturn(null);
         
         ArticleListDirective directive = new ArticleListDirective(dao,null);
         cfg.setSharedVariable("alist", directive);
@@ -107,7 +107,7 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("value.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.toString(), site);
         String value = process(template, params);
         Assert.assertEquals("throws Exception", value);
@@ -117,12 +117,12 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
     public void testValueTemplate()throws Exception{
         ChannelDaoable dao = mock(ChannelDaoable.class);
         Channel channel = new Channel();
-        channel.setId(1);
-        when(dao.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
+        channel.setId(1L);
+        when(dao.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
         
         ArticleDaoable articleLoaderService = mock(ArticleDaoable.class);
         when(articleLoaderService.findPublish(
-        		Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(10));
+        		Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(10));
         
         ArticleListDirective directive = new ArticleListDirective(dao,articleLoaderService);
         cfg.setSharedVariable("alist", directive);
@@ -130,7 +130,7 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("value.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.getVariable(), site);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         String value = process(template, params);
@@ -148,13 +148,13 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
     public void testLoopsTemplate()throws Exception{
         ChannelDaoable dao = mock(ChannelDaoable.class);
         Channel channel = new Channel();
-        channel.setId(1);
-        when(dao.findPublishByUri(any(Integer.class), any(String.class))).thenReturn(channel);
-        when(dao.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
+        channel.setId(1L);
+        when(dao.findPublishByUri(any(Long.class), any(String.class))).thenReturn(channel);
+        when(dao.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
         
         ArticleDaoable articleLoaderService = mock(ArticleDaoable.class);
         when(articleLoaderService.findPublish(
-        		Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(25));
+        		Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(25));
         ArticleListDirective directive = new ArticleListDirective(dao,articleLoaderService);
         
         cfg.setSharedVariable("alist", directive);
@@ -162,7 +162,7 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("loop.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.toString(), site);
         params.put(GlobalVariable.CHANNEL.getVariable(), channel);
         String value = process(template, params);
@@ -180,14 +180,14 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
     public void testDefaultRowTemplate()throws Exception{
         ChannelDaoable dao = mock(ChannelDaoable.class);
         Channel channel = new Channel();
-        channel.setId(1);
+        channel.setId(1L);
         channel.setListSize(12);
-        when(dao.findPublishByUri(any(Integer.class), any(String.class))).thenReturn(channel);
-        when(dao.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
+        when(dao.findPublishByUri(any(Long.class), any(String.class))).thenReturn(channel);
+        when(dao.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
         
         ArticleDaoable articleLoaderService = mock(ArticleDaoable.class);
         when(articleLoaderService.findPublish(
-        		Mockito.anyInt(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(12));
+        		Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt(), Mockito.anyBoolean())).thenReturn(createArticleRow(12));
         ArticleListDirective directive = new ArticleListDirective(dao,articleLoaderService);
         
         cfg.setSharedVariable("alist", directive);
@@ -195,7 +195,7 @@ public class ArticleListDirectiveTest extends FreemarkerTest {
         Template template = cfg.getTemplate(getTemplatePath("defaultrow.html"));
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.toString(), site);
         params.put(GlobalVariable.CHANNEL.toString(), channel);
         String value = process(template, params);

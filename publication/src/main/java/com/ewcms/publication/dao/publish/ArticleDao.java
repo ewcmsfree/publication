@@ -57,7 +57,7 @@ public class ArticleDao implements ArticleDaoable{
 	}
 
 	@Override
-	public int findPrePublishCount(Integer channelId, Boolean forceAgain) {
+	public int findPrePublishCount(Long channelId, Boolean forceAgain) {
 		String[] status = forceAgain ? 	new String[]{PRERELEASE_STATUS, RELEASE_STATUS} : new String[]{PRERELEASE_STATUS};
 		SqlParameterSource params = new MapSqlParameterSource()
 		        .addValue("channelId", channelId)
@@ -67,7 +67,7 @@ public class ArticleDao implements ArticleDaoable{
 	}
 
 	@Override
-	public List<Article> findPrePublish(Integer channelId, Boolean forceAgain, Long startId, Integer limit) {
+	public List<Article> findPrePublish(Long channelId, Boolean forceAgain, Long startId, Integer limit) {
 		String[] status = forceAgain ? 	new String[]{PRERELEASE_STATUS, RELEASE_STATUS} : new String[]{PRERELEASE_STATUS};
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("channelId", channelId).
@@ -79,7 +79,7 @@ public class ArticleDao implements ArticleDaoable{
 	}
 	
 	@Override
-	public int findPublishCount(Integer channelId) {
+	public int findPublishCount(Long channelId) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("channelId", channelId).
 				addValue("status", RELEASE_STATUS);
@@ -88,7 +88,7 @@ public class ArticleDao implements ArticleDaoable{
 	}
 
 	@Override
-	public List<ArticleInfo> findPublish(Integer channelId, Integer page,Integer row, Boolean top) {
+	public List<ArticleInfo> findPublish(Long channelId, Integer page,Integer row, Boolean top) {
 		int offset = page * row;
 		MapSqlParameterSource params = new MapSqlParameterSource().
 				addValue("channelId", channelId).

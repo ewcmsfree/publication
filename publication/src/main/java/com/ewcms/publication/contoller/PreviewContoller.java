@@ -31,8 +31,8 @@ public class PreviewContoller {
 	private PreviewServiceable previewService;
 
 	@RequestMapping(value="/template/{siteId}/{channelId}/{templateId}/{mock}",method = RequestMethod.GET)
-	public void previewTemplate(@PathVariable("siteId")Integer siteId, @PathVariable("channelId")Integer channelId,
-			@PathVariable("templateId")Integer templateId,@PathVariable("mock")Boolean mock,
+	public void previewTemplate(@PathVariable("siteId")Long siteId, @PathVariable("channelId")Long channelId,
+			@PathVariable("templateId")Long templateId,@PathVariable("mock")Boolean mock,
 			HttpServletResponse response,HttpSession session){
 
 		session.setAttribute(SESSION_CURRENT_SITE_ID, siteId);
@@ -66,7 +66,7 @@ public class PreviewContoller {
 	}
 	
 	@RequestMapping(value="/article/{siteId}/{channelId}/{articleId}/{pageNumber}", method=RequestMethod.GET)
-	public void previewArticle(@PathVariable("siteId")Integer siteId,@PathVariable("channelId")Integer channelId,
+	public void previewArticle(@PathVariable("siteId")Long siteId,@PathVariable("channelId")Long channelId,
 			@PathVariable("articleId")Long articleId,@PathVariable("pageNumber")Integer pageNumber,
 			HttpServletResponse response, HttpSession session){
 		

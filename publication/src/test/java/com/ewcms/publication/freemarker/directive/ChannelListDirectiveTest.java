@@ -41,7 +41,7 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
         cfg.setSharedVariable("channel", new ChannelDirective());
     }
 
-    private Channel createChannel(int id,boolean publicenabled) {
+    private Channel createChannel(Long id,boolean publicenabled) {
         Channel channel = new Channel();
 
         channel.setId(id);
@@ -52,7 +52,7 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
         return channel;
     }
 
-    private List<Channel> createChannelChildren(int parentId, int count) {
+    private List<Channel> createChannelChildren(Long parentId, int count) {
         List<Channel> children = new ArrayList<Channel>();
 
         for (int i = 0; i < count; ++i) {
@@ -68,26 +68,26 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
     }
     @Test
     public void testLoadingChannel()throws Exception{
-        Channel channel = createChannel(1,true);
+        Channel channel = createChannel(1L,true);
         ChannelDaoable service = mock(ChannelDaoable.class);
-        when(service.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
+        when(service.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
         ChannelListDirective directive = new ChannelListDirective(service);
         
-        List<Channel> list = directive.loadingChannel(1, 1, false, false, false);
+        List<Channel> list = directive.loadingChannel(1L, 1L, false, false, false);
         Assert.assertFalse(list.isEmpty());
         Assert.assertEquals(1, list.size());
     }
     
     @Test
     public void testLoadingChannelChildren()throws Exception{
-        Channel channel = createChannel(1,true);
+        Channel channel = createChannel(1L,true);
         ChannelDaoable service = mock(ChannelDaoable.class);
-        when(service.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
-        List<Channel> children = createChannelChildren(1,5);
-        when(service.findPublishChildren(any(Integer.class),any(Integer.class))).thenReturn(children);
+        when(service.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
+        List<Channel> children = createChannelChildren(1L,5);
+        when(service.findPublishChildren(any(Long.class),any(Long.class))).thenReturn(children);
         ChannelListDirective directive = new ChannelListDirective(service);
         
-        List<Channel> list = directive.loadingChannel(1, 1, false, true,false);
+        List<Channel> list = directive.loadingChannel(1L, 1L, false, true,false);
         Assert.assertFalse(list.isEmpty());
         Assert.assertEquals(5, list.size());
     }
@@ -99,16 +99,16 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
     private Map<String,Object> templateParameters(){
         Map<String,Object> params = new HashMap<String,Object>();
         Site site = new Site();
-        site.setId(1);
+        site.setId(1L);
         params.put(GlobalVariable.SITE.toString(), site);
         return params;
     }
     
     @Test
     public void testValueTemplate()throws Exception{
-        Channel channel = createChannel(1,true);
+        Channel channel = createChannel(1L,true);
         ChannelDaoable service = mock(ChannelDaoable.class);
-        when(service.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
+        when(service.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
         ChannelListDirective directive = new ChannelListDirective(service);
         
         cfg.setSharedVariable("clist", directive);
@@ -124,11 +124,11 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
     
     @Test
     public void testChildrenTemplate()throws Exception{
-        Channel channel = createChannel(1,true);
+        Channel channel = createChannel(1L,true);
         ChannelDaoable service = mock(ChannelDaoable.class);
-        when(service.findPublishOne(any(Integer.class), any(Integer.class))).thenReturn(channel);
-        List<Channel> children = createChannelChildren(1,5);
-        when(service.findPublishChildren(any(Integer.class),any(Integer.class))).thenReturn(children);
+        when(service.findPublishOne(any(Long.class), any(Long.class))).thenReturn(channel);
+        List<Channel> children = createChannelChildren(1L,5);
+        when(service.findPublishChildren(any(Long.class),any(Long.class))).thenReturn(children);
         ChannelListDirective directive = new ChannelListDirective(service);
         
         cfg.setSharedVariable("clist", directive);
@@ -145,10 +145,10 @@ public class ChannelListDirectiveTest extends FreemarkerTest {
      */
     private void initMockArrayChannel(){
         ChannelDaoable service = mock(ChannelDaoable.class);
-        when(service.findPublishOne(1, 1)).thenReturn(createChannel(1,true));
-        when(service.findPublishOne(1, 2)).thenReturn(createChannel(2,true));
-        when(service.findPublishOne(1, 3)).thenReturn(createChannel(3,true));
-        when(service.findPublishByUri(1,"db/test")).thenReturn(createChannel(3,true));
+        when(service.findPublishOne(1L, 1L)).thenReturn(createChannel(1L,true));
+        when(service.findPublishOne(1L, 2L)).thenReturn(createChannel(2L,true));
+        when(service.findPublishOne(1L, 3L)).thenReturn(createChannel(3L,true));
+        when(service.findPublishByUri(1L,"db/test")).thenReturn(createChannel(3L,true));
         ChannelListDirective directive = new ChannelListDirective(service);
         
         cfg.setSharedVariable("clist", directive);

@@ -47,7 +47,7 @@ public class ChannelDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findRoot(Integer siteId) {
+	public Channel findRoot(Long siteId) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId);
 		
@@ -55,7 +55,7 @@ public class ChannelDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findPublishOne(Integer siteId, Integer id) {
+	public Channel findPublishOne(Long siteId, Long id) {
 		String key = articleKey(siteId, id);
 		if(cache.exist(key)){
 			return (Channel)cache.get(key);
@@ -75,13 +75,13 @@ public class ChannelDao implements ChannelDaoable{
 		return channel;
 	}
 	
-	private String articleKey(Integer siteId,Integer id){
+	private String articleKey(Long siteId,Long id){
 		return String.format("article-%d-%d",siteId, id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Channel> findPublishChildren(Integer siteId, Integer id) {
+	public List<Channel> findPublishChildren(Long siteId, Long id) {
 		String key = childrenKey(siteId, id);
 		if(cache.exist(key)){
 			return (List<Channel>)cache.get(key);
@@ -97,12 +97,12 @@ public class ChannelDao implements ChannelDaoable{
 		return children;
 	}
 	
-	private String childrenKey(Integer siteId, Integer id){
+	private String childrenKey(Long siteId, Long id){
 		return String.format("children-%d-%d", siteId, id);
 	}
 
 	@Override
-	public Channel findPublishParent(Integer siteId,Integer id) {
+	public Channel findPublishParent(Long siteId,Long id) {
 		Channel channel = this.findPublishOne(siteId, id);
 		if(channel == null){
 			return null;
@@ -111,7 +111,7 @@ public class ChannelDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findPublishByUri(Integer siteId, String uri) {
+	public Channel findPublishByUri(Long siteId, String uri) {
 		String key = uriKey(siteId, uri);
 		if(cache.exist(key)){
 			return (Channel)cache.get(key);
@@ -130,7 +130,7 @@ public class ChannelDao implements ChannelDaoable{
 		return channel;
 	}
 	
-	private String uriKey(Integer siteId,String uri){
+	private String uriKey(Long siteId,String uri){
 		return String.format("article-%d-%s",siteId, uri);
 	}
 	
@@ -143,14 +143,14 @@ public class ChannelDao implements ChannelDaoable{
 			channel.setAbsUrl(rs.getString("absurl"));
 			channel.setDir(rs.getString("dir"));
 			channel.setIconUrl(rs.getString("iconurl"));
-			channel.setId(rs.getInt("id"));
+			channel.setId(rs.getLong("id"));
 			channel.setListSize(rs.getInt("listsize"));
 			channel.setMaxSize(rs.getInt("maxsize"));
 			channel.setName(rs.getString("name"));
-			channel.setParentId(rs.getInt("parent_id"));
+			channel.setParentId(rs.getLong("parent_id"));
 			channel.setPubPath(rs.getString("pubpath"));
 			channel.setUrl(rs.getString("url"));
-			channel.setSiteId(rs.getInt("site_id"));
+			channel.setSiteId(rs.getLong("site_id"));
 			
 			return channel;
 		}

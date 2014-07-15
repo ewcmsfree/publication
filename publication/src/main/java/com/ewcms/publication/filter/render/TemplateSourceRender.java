@@ -41,7 +41,7 @@ public class TemplateSourceRender  extends AbstractResourceRender{
      * @return
      * @throws IOException
      */
-    protected boolean output(HttpServletResponse response,Integer siteId, String uri)throws IOException{
+    protected boolean output(HttpServletResponse response,Long siteId, String uri)throws IOException{
         TemplateSource source = sourceDao.findByUri(siteId, uri);
         if(source == null){
             logger.debug("TemplateSource is not exist,uri is {}",uri);

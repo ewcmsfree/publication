@@ -46,7 +46,7 @@ public class FreemarkerPreviewService implements PreviewServiceable {
     private TemplateDaoable templateDao;
     
 	@Override
-	public void viewTemplate(Writer writer,int siteId, int channelId, int templateId, boolean mock) throws PublishException {
+	public void viewTemplate(Writer writer,Long siteId, Long channelId, Long templateId, boolean mock) throws PublishException {
 		Template template = templateDao.findOne(channelId , templateId);
 		if(template == null){
 			throw new PublishException("Template not exist");
@@ -107,7 +107,7 @@ public class FreemarkerPreviewService implements PreviewServiceable {
 	}
 
 	@Override
-	public void viewArticle(Writer writer,int siteId, int channelId, long articleId, int pageNumber) throws PublishException {
+	public void viewArticle(Writer writer,Long siteId, Long channelId, Long articleId, int pageNumber) throws PublishException {
 		List<Template> templates = templateDao.findInChannel(channelId);
 		Template template = getDetailTemplate(templates);		
 		ArticleDaoable articleDao = new ArticlePreviewDao(dataSource,false);
@@ -164,7 +164,7 @@ public class FreemarkerPreviewService implements PreviewServiceable {
 	}
 	
 	@Override
-	public boolean verifyTemplate(int siteId, int channelId, int templateId) {
+	public boolean verifyTemplate(Long siteId, Long channelId, Long templateId) {
 		boolean verify = false;
 		try{
 			Writer writer= new StringWriter();

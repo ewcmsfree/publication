@@ -37,13 +37,13 @@ public class ChannelPreviewDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findRoot(Integer siteId) {
+	public Channel findRoot(Long siteId) {
 		//none instance
 		return null;
 	}
 
 	@Override
-	public Channel findPublishOne(Integer siteId, Integer id) {
+	public Channel findPublishOne(Long siteId, Long id) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
 				addValue("id", id).
@@ -57,7 +57,7 @@ public class ChannelPreviewDao implements ChannelDaoable{
 	}
 
 	@Override
-	public List<Channel> findPublishChildren(Integer siteId, Integer id) {
+	public List<Channel> findPublishChildren(Long siteId, Long id) {
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).
 				addValue("id", id).
@@ -67,7 +67,7 @@ public class ChannelPreviewDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findPublishParent(Integer siteId, Integer id) {
+	public Channel findPublishParent(Long siteId, Long id) {
 		Channel c = findPublishOne(siteId, id);
 		if(c == null){
 			return c;
@@ -76,7 +76,7 @@ public class ChannelPreviewDao implements ChannelDaoable{
 	}
 
 	@Override
-	public Channel findPublishByUri(Integer siteId, String uri) {
+	public Channel findPublishByUri(Long siteId, String uri) {
 		
 		SqlParameterSource params = new MapSqlParameterSource().
 				addValue("siteId", siteId).

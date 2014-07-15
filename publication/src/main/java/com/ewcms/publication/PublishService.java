@@ -79,7 +79,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
     private PublishRunnerable pubRunner;
     
 	@Override
-	public void pubTemplateSource(int siteId, List<Long> ids)throws PublishException {
+	public void pubTemplateSource(Long siteId, List<Long> ids)throws PublishException {
 		Site site = siteDao.findOne(siteId);
 		Taskable task = new TemplateSourceTask(site, tempRoot, ids, sourceDao);
 		
@@ -87,7 +87,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubTemplateSource(int siteId, boolean again)throws PublishException {
+	public void pubTemplateSource(Long siteId, boolean again)throws PublishException {
 		Site site = siteDao.findOne(siteId);
 		Taskable task = new TemplateSourceSiteTask(site, tempRoot, again, sourceDao);
 		
@@ -95,7 +95,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubResource(int siteId, List<Long> ids)throws PublishException {
+	public void pubResource(Long siteId, List<Long> ids)throws PublishException {
 		Site site = siteDao.findOne(siteId);
         Taskable task = new TemplateSourceTask(site, tempRoot, ids, sourceDao);
 		
@@ -103,7 +103,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubResource(int siteId, boolean again)throws PublishException {
+	public void pubResource(Long siteId, boolean again)throws PublishException {
 		Site site = siteDao.findOne(siteId);
 		Taskable task = new ResourceSiteTask(site, again, resourceDao);
 		
@@ -111,7 +111,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubTemplate(int siteId ,int channelId, int templateId, boolean again)throws PublishException {
+	public void pubTemplate(Long siteId ,Long channelId, Long templateId, boolean again)throws PublishException {
 		Site site = siteDao.findOne(siteId);
 		Channel channel = channelDao.findPublishOne(siteId, channelId);
 		Template template = templateDao.findOne(channelId, templateId);
@@ -147,7 +147,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubChannel(int siteId, int channelId, boolean pubChild, boolean again) throws PublishException {
+	public void pubChannel(Long siteId, Long channelId, boolean pubChild, boolean again) throws PublishException {
 		
 		Site site = getSite(siteId);
 		Channel channel = getChannel(siteId, channelId);
@@ -158,7 +158,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubSite(int siteId, boolean again)throws PublishException {
+	public void pubSite(Long siteId, boolean again)throws PublishException {
 		
 		Site site = getSite(siteId);
 		Taskable task = new SiteTask(site, cfg, tempRoot, again, resourceDao, sourceDao, channelDao, templateDao, articleDao);
@@ -167,7 +167,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	}
 
 	@Override
-	public void pubArticle(int siteId, int channelId, List<Long> ids) throws PublishException {
+	public void pubArticle(Long siteId, Long channelId, List<Long> ids) throws PublishException {
 		Site site = getSite(siteId);
 		Channel channel = getChannel(siteId, channelId);
 		List<Template> templates = templateDao.findInChannel(channelId);
@@ -184,13 +184,13 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
 	
 
 	@Override
-	public void closeTask(Integer siteId, String id)throws PublishException {
+	public void closeTask(Long siteId, String id)throws PublishException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Taskable> getSiteTask(Integer siteId) {
+	public List<Taskable> getSiteTask(Long siteId) {
 		return null;
 	}
 	
@@ -203,7 +203,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
      * @return
      * @throws PublishException
      */
-    private Site getSite(Integer siteId)throws PublishException{
+    private Site getSite(Long siteId)throws PublishException{
         Site site = siteDao.findOne(siteId);
         if(site == null){
             logger.error("Site id's {},but site not exist.",siteId);
@@ -220,7 +220,7 @@ public class PublishService implements PublishServiceable, InitializingBean, Dis
      * @return
      * @throws PublishException
      */
-    private Channel getChannel(int siteId, int channelId)throws PublishException{
+    private Channel getChannel(Long siteId, Long channelId)throws PublishException{
     	Channel channel = channelDao.findPublishOne(siteId, channelId);
     	if(channel == null){
     		logger.error("Site id's {} and channel id's {}", siteId, channelId);

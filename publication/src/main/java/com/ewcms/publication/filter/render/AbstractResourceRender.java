@@ -34,9 +34,9 @@ public abstract class AbstractResourceRender implements Renderable {
         return uri.replace(contextPath, "");
     }
     
-    protected Integer getCurrentSiteId(HttpServletRequest request){
-    	Integer siteId =(Integer)request.getSession().getAttribute(SESSION_CURRENT_SITE_ID);
-    	return siteId == null ? Integer.MIN_VALUE : siteId;
+    protected Long getCurrentSiteId(HttpServletRequest request){
+    	Long siteId =(Long)request.getSession().getAttribute(SESSION_CURRENT_SITE_ID);
+    	return siteId == null ? Long.MIN_VALUE : siteId;
     }
     
     /**
@@ -48,11 +48,11 @@ public abstract class AbstractResourceRender implements Renderable {
      * @return true 返回资源 
      * @throws IOException
      */
-    protected abstract boolean output(HttpServletResponse response,Integer siteId, String uri)throws IOException;
+    protected abstract boolean output(HttpServletResponse response,Long siteId, String uri)throws IOException;
         
     @Override
     public boolean render(HttpServletRequest request,HttpServletResponse response)throws IOException {
-        Integer siteId = getCurrentSiteId(request);
+    	Long siteId = getCurrentSiteId(request);
         if( siteId == null){
             return false;
         }

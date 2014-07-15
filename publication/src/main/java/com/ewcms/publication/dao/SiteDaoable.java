@@ -23,5 +23,5 @@ public interface SiteDaoable extends CacheDaoable{
      * @param id 站点编号
      * @return
      */
-    public Site findOne(Integer id);
+    public Site findOne(Long id);
 }
